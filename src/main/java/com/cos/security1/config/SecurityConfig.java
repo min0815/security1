@@ -26,7 +26,10 @@ public class SecurityConfig {
                 .requestMatchers("/manager/**").hasAnyRole("ADMIN", "MANAGER")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().permitAll()
-                ).formLogin(form -> form.loginPage("/loginForm")); // 설정하고부터 접근권한 없는 페이지 가면 로그인 페이지로 이동
+                ).formLogin(form -> form
+                        .loginPage("/loginForm") // 설정하고부터 접근권한 없는 페이지 가면 로그인 페이지로 이동
+                        .loginProcessingUrl("/login") // /login 주소가 호출이 되면 시큐리티가 낚아채서 대신 로그인을 진행합니다
+                        .defaultSuccessUrl("/"));
         return http.build();
     }
 }

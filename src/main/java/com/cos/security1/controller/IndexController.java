@@ -54,6 +54,7 @@ public class IndexController {
 
     @PostMapping("/join")
     public String join(User user) {
+
         user.setRole("ROLE_USER");
         // 회원가입은 잘 되지만 시큐리티 로그인은 할 수 없음. 이유는 패스워드 암호화가 안 되었기 때문
 
@@ -62,7 +63,6 @@ public class IndexController {
         user.setPassword(encPassword);
         userRepository.save(user);
 
-        System.out.println(user);
         return "redirect:/loginForm";
     }
 
