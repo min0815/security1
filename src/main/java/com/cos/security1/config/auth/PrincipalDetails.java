@@ -6,7 +6,7 @@ package com.cos.security1.config.auth;
 // Authentication 안에 User정보가 있어야 함
 // User 오브젝트 타입 => UserDetails 타입 객체
 
-// Security Session => Authentication
+// Security Session => Authentication => UserDetails
 
 public class PrincipalDetails {
 }
