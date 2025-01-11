@@ -9,7 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableMethodSecurity(securedEnabled = true)
+@EnableMethodSecurity(securedEnabled = true) // secured 어노테이션 활성화
+// prePostEnabled = true는 default
 public class SecurityConfig {
 
     @Bean // 해당 메소드의 리턴되는 오브젝트를 IoC로 등록해준다.
