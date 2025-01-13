@@ -31,7 +31,9 @@ public class SecurityConfig {
                         .loginPage("/loginForm") // 설정하고부터 접근권한 없는 페이지 가면 로그인 페이지로 이동
                         // .usernameParameter("username2") 만약 파라미터 이름이 username이랑 다를 때 설정
                         .loginProcessingUrl("/login") // /login 주소가 호출이 되면 시큐리티가 낚아채서 대신 로그인을 진행합니다
-                        .defaultSuccessUrl("/"));
+                        .defaultSuccessUrl("/"))
+                .oauth2Login(oauth2 -> oauth2
+                        .loginPage("/loginForm")); // 구글 로그인 완료된 뒤의 후처리 필요
         return http.build();
     }
 }
