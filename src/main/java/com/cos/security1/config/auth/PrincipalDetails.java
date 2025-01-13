@@ -65,4 +65,5 @@ public class PrincipalDetails implements UserDetails {
         // 사이트에서 1년 동안 회원이 로그인을 안하면 휴면 계정으로 전환하기로 함
         return UserDetails.super.isEnabled();
     }
+
 }
