@@ -12,16 +12,35 @@ import com.cos.security1.model.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 @Data
-public class PrincipalDetails implements UserDetails {
+public class PrincipalDetails implements UserDetails, OAuth2User {
     private User user; // composition (?)
+    private Map<String, Object> attributes;
 
     public PrincipalDetails(User user) {
         this.user = user;
+    }
+
+    // OAuth 로그인
+    public PrincipalDetails(User user, Map<String, Object> attributes)  {
+        this.user = user;
+        this.attributes = attributes;
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    @Override
+    public String getName() { // 사용 안함
+        return null;
     }
 
     // 해당 User의 권한을 리턴하는 곳
@@ -67,5 +86,4 @@ public class PrincipalDetails implements UserDetails {
         // 사이트에서 1년 동안 회원이 로그인을 안하면 휴면 계정으로 전환하기로 함
         return UserDetails.super.isEnabled();
     }
-
 }
